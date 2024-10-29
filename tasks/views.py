@@ -86,9 +86,9 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Mantener la sesión activa
+            update_session_auth_hash(request, user)
             messages.success(request, 'La contraseña ha sido cambiada exitosamente.')
-            return redirect('tasks:account_detail')  # Cambiado a account_detail
+            return redirect('tasks:account_detail')
     else:
         form = PasswordChangeForm(user=request.user)
 
@@ -100,7 +100,7 @@ def delete_account(request):
     if request.method == 'POST':
         request.user.delete()
         messages.success(request, 'Tu cuenta ha sido eliminada exitosamente.')
-        return redirect('tasks:index')  # Redirige a la página de inicio o donde desees
+        return redirect('tasks:index') 
     return render(request, 'tasks/delete_account.html', {'user': request.user})
 
 def logout_view(request):
