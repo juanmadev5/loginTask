@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "loginTask/wsgi.py",
@@ -12,7 +11,7 @@
   ],
   "routes": [
     {
-      "src": "static/(.*)",
+      "src": "/static/(.*)",
       "dest": "/static/$1"
     },
     {
