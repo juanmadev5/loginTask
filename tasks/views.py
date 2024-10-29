@@ -11,7 +11,7 @@ User = get_user_model()
 
 def index(request):
     if request.user.is_authenticated:
-        tasks = Task.objects.all()
+        tasks = Task.objects.filter(user=request.user)
         params = {'tasks': tasks}
         return render(request, 'tasks/index.html', params)
     else:
@@ -50,9 +50,15 @@ def register_view(request):
         email = request.POST.get('email')
         username = request.POST.get('username')
         password = request.POST.get('password')
-        User.objects.create_user(username=username, email=email, password=password)
-        messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
-        return redirect('tasks:login')
+        age = request.POST.get('age')
+
+        try:
+            User.objects.create_user(username=username, email=email, password=password, age=age)
+            messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
+            return redirect('tasks:login')
+        except Exception as e:
+            messages.error(request, f'Error en el registro: {e}')
+            return render(request, 'tasks/register.html')
 
     return render(request, 'tasks/register.html')
 
