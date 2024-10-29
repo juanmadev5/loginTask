@@ -8,13 +8,16 @@
         "maxLambdaSize": "15mb",
         "runtime": "python3.12.3"
       }
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static",
+      "config": {
+        "distDir": "staticfiles"
+      }
     }
   ],
   "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
     {
       "src": "/(.*)",
       "dest": "loginTask/wsgi.py"
