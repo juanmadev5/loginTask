@@ -1,0 +1,71 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}Página de Detalles de Información de Miembros{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1>Página de Detalles de Información de Miembros</h1>
+    <div class="info-group">
+        <label for="username">Nombre de Usuario:</label>
+        <p>{{ user.username }}</p>
+    </div>
+    <div class="info-group">
+        <label for="email">Dirección de Correo Electrónico:</label>
+        <p>{{ user.email }}</p>
+    </div>
+    <div class="info-group">
+        <label for="age">Edad:</label>
+        <p>{{ user.age }}</p>
+    </div>
+    <p>
+        <a href="{% url 'tasks:edit_account' %}">Editar</a> |
+        <a href="{% url 'tasks:change_password' %}">Cambiar contraseña</a>
+    </p>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .info-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .info-group label {
+        font-weight: bold;
+    }
+
+    a {
+        color: #5cb85c;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
